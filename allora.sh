@@ -68,10 +68,7 @@ while true; do
 
             # Установка Docker
             echo "Происходит установка Docker..."
-            if curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg &&
-               echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null &&
-               sudo apt-get update &&
-               sudo apt-get install docker-ce docker-ce-cli containerd.io -y; then
+            if curl -fsSL https://get.docker.com | bash; then
                 echo "Установка Docker: Успешно"
             else
                 echo "Установка Docker: Ошибка"
@@ -80,16 +77,7 @@ while true; do
 
             echo "Версия Docker:"
             docker version
-
-            # Установка Docker Compose
-            echo "Происходит установка Docker Compose..."
-            if sudo apt-get install docker-compose -y; then
-                echo "Установка Docker Compose: Успешно"
-            else
-                echo "Установка Docker Compose: Ошибка"
-                exit 1
-            fi
-
+            
             echo "Версия Docker Compose:"
             docker-compose version
 
